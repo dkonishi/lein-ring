@@ -1,8 +1,8 @@
-(defproject lein-ring "0.12.5"
+(defproject dkonishi/lein-ring "0.12.5"
   :description "Leiningen Ring plugin"
-  :url "https://github.com/weavejester/lein-ring"
+  :url "https://github.com/dkonishi/lein-ring"
   :scm {:name "git"
-        :url "https://github.com/weavejester/lein-ring"}
+        :url "https://github.com/dkonishi/lein-ring"}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/core.unify "0.5.7"]

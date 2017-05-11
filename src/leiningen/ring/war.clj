@@ -9,6 +9,7 @@
         leiningen.ring.util)
   (:import [java.util.jar JarEntry
                           JarOutputStream]
+           [java.util.zip ZipException]
            [java.io BufferedOutputStream
                     FileOutputStream
                     ByteArrayInputStream
@@ -176,8 +177,14 @@
 
 (defmulti write-entry (fn [war _ _] (class war)))
 (defmethod write-entry JarOutputStream [war war-path entry]
-  (.putNextEntry war (JarEntry. war-path))
-  (io/copy entry war))
+  (let [jar-entry (JarEntry. war-path)]
+    (try
+      (.putNextEntry war jar-entry)
+      (io/copy entry war)
+      (catch ZipException e
+        (println (str "[WARN] \"" (.getName jar-entry)
+                      "\" is already included on war file and it won't be included again."))))))
+
 (defmethod write-entry File [war-dir war-path file-or-data]
   (let [to-file (io/file war-dir war-path)]
     (io/make-parents to-file)

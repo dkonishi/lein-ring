@@ -1,4 +1,4 @@
-(defproject dkonishi/lein-ring "0.12.5"
+(defproject dkonishi/lein-ring "0.12.6"
   :description "Leiningen Ring plugin"
   :url "https://github.com/dkonishi/lein-ring"
   :scm {:name "git"
